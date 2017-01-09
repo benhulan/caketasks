@@ -26,7 +26,8 @@ app.on('ready', function() {
     height: 300,
     transparent: true,
     show: false,
-    frame: false
+    modal: true
+    // frame: false
   }); //infoWindow
 
   infoWindow.loadURL('file://' + __dirname + '/info.html');
