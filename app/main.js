@@ -1,7 +1,9 @@
 var electron = require('electron');
 var BrowserWindow = electron.BrowserWindow;
+var Menu = electron.Menu;
 var app = electron.app;
 var ipc = electron.ipcMain;
+var myAppMenu, menuTemplate;
 
 app.on('ready', function() {
   var appWindow, infoWindow;
@@ -34,5 +36,57 @@ app.on('ready', function() {
     event.returnValue='';
     infoWindow.hide();
   }); //closeInfoWindow
+
+
+  menuTemplate = [
+    {
+      label: 'CakeTasks',
+      submenu: [
+        {
+          label: 'Add Appointment',
+          accelerator: process.platform === 'darwin' ? 'Command+N' : 'Ctrl+N',
+          click(item, focusedWindow) {
+            if(focusedWindow) focusedWindow.webContents.send('addApt');
+          }
+        }, {
+          role: 'help',
+          label: 'Website',
+          click() { electron.shell.openExternal('http://benhulan.com')}
+        },
+        {role: 'quit'},
+        {role: 'close'}
+      ]
+    }, {
+      label: 'Edit',
+      submenu: [
+        {role: 'undo'},
+        {role: 'redo'},
+        {role: 'cut'},
+        {role: 'copy'},
+        {role: 'paste'},
+        {role: 'selectall'}
+      ]
+    }, {
+      label: 'View',
+      submenu: [
+        {
+          label: 'Reload',
+          accelerator: 'CmdOrCtrl+R',
+          click(item, focusedWindow) {
+            if(focusedWindow) focusedWindow.reload()
+          }
+        }, {
+          label: 'Dev Tools',
+          accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+          click(item, focusedWindow) {
+            if (focusedWindow) focusedWindow.webContents.toggleDevTools()
+          }
+        }
+      ]
+    }
+  ];
+
+  myAppMenu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(myAppMenu);
 
 }); //app is ready
