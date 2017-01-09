@@ -5,6 +5,14 @@ var app = electron.app;
 var ipc = electron.ipcMain;
 var myAppMenu, menuTemplate;
 
+function toggleWindow(whichWindow){
+  if(whichWindow.isVisible()) {
+    whichWindow.hide();
+  } else {
+    whichWindow.show();
+  }
+}
+
 app.on('ready', function() {
   var appWindow, infoWindow;
   appWindow = new BrowserWindow({
@@ -43,6 +51,10 @@ app.on('ready', function() {
       label: 'CakeTasks',
       submenu: [
         {
+          label: 'About',
+          accelerator: process.platform === 'darwin' ? 'Command+I' : 'Ctrl+I',
+          click(item){ toggleWindow(infoWindow)}
+        }, {
           label: 'Add Appointment',
           accelerator: process.platform === 'darwin' ? 'Command+N' : 'Ctrl+N',
           click(item, focusedWindow) {
