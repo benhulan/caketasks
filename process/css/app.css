@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
   margin-bottom: 0;
   border-radius: 0;
-  background-image: url("../images/wisdompetlogo.svg");
+  background-image: url("../images/caketaskslogo.svg");
   background-repeat: no-repeat;
   background-size: 40px;
   background-position: 10px;
@@ -197,6 +197,16 @@ h1, h2, h3, h4, h5, h6 {
 .navbar > .container .navbar-brand:hover, .navbar > .container-fluid .navbar-brand:hover {
   color: white;
 }
+
+/******/
+.wrapper {
+    padding : 20px;
+    margin-top : 20px;
+}
+
+/******/
+
+
 
 #page-info {
   background: transparent;

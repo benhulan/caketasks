@@ -29,6 +29,7 @@ var HeaderNav = React.createClass({
                       <li><a href="#" id="petName" onClick={this.handleSort}>Task {(this.props.orderBy === 'petName') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>
                       <li><a href="#" id="aptDate" onClick={this.handleSort}>Due Date {(this.props.orderBy === 'aptDate') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>
                       <li><a href="#" id="ownerName" onClick={this.handleSort}>Subject  {(this.props.orderBy === 'ownerName') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>
+                      <li><a href="#" id="aptEffort" onClick={this.handleSort}>Effort  {(this.props.orderBy === 'aptEffort') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>
                       <li role="separator" className="divider"></li>
                       <li><a href="#" id="asc" onClick={this.handleOrder}>Asc {(this.props.orderDir === 'asc') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>
                       <li><a href="#" id="desc" onClick={this.handleOrder}>Desc {(this.props.orderDir === 'desc') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>

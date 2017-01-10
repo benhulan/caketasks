@@ -27,6 +27,7 @@ var AddAppointment = React.createClass({
       petName: this.inputPetName.value,
       ownerName: this.inputPetOwner.value,
       aptDate: this.inputAptDate.value + ' ' + this.inputAptTime.value,
+      aptEffort: this.inputEffort.value,
       aptNotes: this.inputAptNotes.value,
     } //tempitems
 
@@ -36,6 +37,7 @@ var AddAppointment = React.createClass({
     this.inputPetOwner.value = '';
     this.inputAptDate.value = formatDate(defaultDate, '-');
     this.inputAptTime.value = '08:15';
+    this.inputEffort.value = '0';
     this.inputAptNotes.value = '';
     
   }, //handleAdd
@@ -49,7 +51,6 @@ var AddAppointment = React.createClass({
               <button type="button" className="close" onClick={this.toggleAptDisplay} aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 className="modal-title">Add a Task</h4>
             </div>
-
             <form className="modal-body add-appointment form-horizontal" onSubmit={this.handleAdd}>
               <div className="form-group">
                 <label className="col-sm-3 control-label" htmlFor="petName">Task</label>
@@ -78,6 +79,13 @@ var AddAppointment = React.createClass({
                 <div className="col-sm-9">
                   <input type="time" className="form-control"
                     id="aptTime"  ref={(ref) => this.inputAptTime = ref } defaultValue={'08:15'} />
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="col-sm-3 control-label" htmlFor="aptEffort">Effort</label>
+                <div className="col-sm-9">
+                    <input id="aptEffort" ref={(ref) => this.inputEffort = ref} defaultValue={'0'}
+                    data-slider-id='aptEffortSlider' type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" />
                 </div>
               </div>
               <div className="form-group">
