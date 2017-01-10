@@ -15,11 +15,11 @@ var Toolbar = React.createClass({
       <div className="toolbar">
         <div className="toolbar-item" onClick={this.createAppointments}>
           <span className="toolbar-item-button glyphicon glyphicon-plus-sign"></span>
-          <span className="toolbar-item-text">Add Appointment</span>
+          <span className="toolbar-item-text">New Task</span>
         </div>
         <div className="toolbar-item" onClick={this.toggleAbout}>
           <span className="toolbar-item-button glyphicon glyphicon-question-sign"></span>
-          <span className="toolbar-item-text">About this app</span>
+          <span className="toolbar-item-text">About</span>
         </div>
       </div>
     ) //return

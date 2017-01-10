@@ -194,6 +194,10 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 
+.navbar > .container .navbar-brand:hover, .navbar > .container-fluid .navbar-brand:hover {
+  color: white;
+}
+
 #page-info {
   background: transparent;
   color: white;

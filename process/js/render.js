@@ -144,7 +144,7 @@ var MainInterface = React.createClass({
           <div className="container">
            <div className="row">
              <div className="appointments col-sm-12">
-               <h2 className="appointments-headline">Current Appointments</h2>
+               <h2 className="appointments-headline">Current Tasks:</h2>
                <ul className="item-list media-list">{filteredApts}</ul>
              </div>{/* col-sm-12 */}
            </div>{/* row */}
