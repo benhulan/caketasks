@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "bootstrap-slider": "^9.7.0",
     "electron-packager": "^8.4.0",
     "electron-reload": "^1.0.2",
     "jquery": "^3.1.0",

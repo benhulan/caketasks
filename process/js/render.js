@@ -1,6 +1,8 @@
 var $ = jQuery = require('jquery');
 var _ = require('lodash');
 var bootstrap = require('bootstrap');
+var Slider = require('bootstrap-slider');
+
 var fs = eRequire('fs');
 var loadApts = JSON.parse(fs.readFileSync(dataLocation));
 
@@ -51,6 +53,29 @@ var MainInterface = React.createClass({
       aptBodyVisible: tempVisibility
     }); //setState
   }, //toggleAptDisplay
+
+  changeEffort: function() {
+    // var mySlider = new Slider(slider);
+    var mySlider = document.getElementById('aptEffort').slider();
+    console.log(mySlider);
+    // var minSliderValue = mySlider.data("slider-min");
+    // var maxSliderValue = mySlider.data("slider-max");
+
+    // document.getElementById('aptEffort').slider();
+    // var tempVariable = document.getElementById('aptEffort');
+
+    // If You want to change input text using slider handler
+    mySlider.on('slide', function(slider){
+      document.getElementById("inputValue").val(slider.value);
+    });
+
+    // If you want to change slider using input text
+    // document.getElementById("inputValue").on("keyup", function() {
+    //     var val = Math.abs(parseInt(this.value, 10) || minSliderValue);
+    //     this.value = val > maxSliderValue ? maxSliderValue : val;
+    //     mySlider.setValue(val);
+    // });
+  },
 
   showAbout:function() {
     ipc.sendSync('openInfoWindow');
@@ -104,6 +129,7 @@ var MainInterface = React.createClass({
         (myAppointments[i].petName.toLowerCase().indexOf(queryText)!=-1) ||
         (myAppointments[i].ownerName.toLowerCase().indexOf(queryText)!=-1) ||
         (myAppointments[i].aptDate.toLowerCase().indexOf(queryText)!=-1) ||
+        (myAppointments[i].aptEffort.toLowerCase().indexOf(queryText)!=-1) ||
         (myAppointments[i].aptNotes.toLowerCase().indexOf(queryText)!=-1)
       ) {
         filteredApts.push(myAppointments[i]);
@@ -140,6 +166,7 @@ var MainInterface = React.createClass({
           <AddAppointment
             handleToggle = {this.toggleAptDisplay}
             addApt = {this.addItem}
+            onEffortChange = {this.changeEffort}
           />
           <div className="container">
            <div className="row">

@@ -21,6 +21,10 @@ var AddAppointment = React.createClass({
     this.props.handleToggle();
   },
 
+  getEffort: function() {
+    this.props.onEffortChange(this.props.singleItem.aptEffort);
+  },
+
   handleAdd: function(e) {
     e.preventDefault();
     var tempItem = {
@@ -84,8 +88,7 @@ var AddAppointment = React.createClass({
               <div className="form-group">
                 <label className="col-sm-3 control-label" htmlFor="aptEffort">Effort</label>
                 <div className="col-sm-9">
-                    <input id="aptEffort" ref={(ref) => this.inputEffort = ref} defaultValue={'0'}
-                    data-slider-id='aptEffortSlider' type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" />
+                    <input id="aptEffort" onChange={this.getEffort} ref={(ref) => this.inputEffort = ref} defaultValue={'0'} type="text" name="aptEffort" data-provide="slider" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
                 </div>
               </div>
               <div className="form-group">

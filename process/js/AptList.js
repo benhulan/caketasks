@@ -16,10 +16,8 @@ var AptList = React.createClass({
             <span className="pet-name">{this.props.singleItem.petName}</span>
             <span className="apt-date pull-right">{this.props.singleItem.aptDate}</span>
           </div>
-          <div className="owner-name"><span className="label-item">Subject:</span>
-          {this.props.singleItem.ownerName}</div>
-          <div className="apt-effort"><span className="label-item">Effort:</span>
-          {this.props.singleItem.aptEffort}</div>
+          <div className="owner-name"><span className="label-item">Subject:</span>{this.props.singleItem.ownerName}</div>
+          <div className="apt-effort"><span className="label-item">Effort:</span>{this.props.singleItem.aptEffort}</div>
           <div className="apt-notes">{this.props.singleItem.aptNotes}</div>
         </div>
       </li>
