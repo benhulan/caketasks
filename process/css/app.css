@@ -1,4 +1,5 @@
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.css');
+@import url('../../node_modules/bootstrap-slider/dist/css/bootstrap-slider.css');
 
 *, *:before, *:after {
   box-sizing: inherit;

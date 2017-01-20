@@ -22,12 +22,16 @@ var Toolbar = React.createClass({
           <span className="toolbar-item-text">Import</span>
         </div>
         <div className="toolbar-item" onClick={this.toggleAbout}>
-          <span className="toolbar-item-button glyphicon glyphicon-th-large"></span>
+          <span className="toolbar-item-button glyphicon glyphicon-eye-open"></span>
           <span className="toolbar-item-text">Change View</span>
         </div>
         <div className="toolbar-item" onClick={this.toggleAbout}>
-          <span className="toolbar-item-button glyphicon glyphicon-question-sign"></span>
+          <span className="toolbar-item-button glyphicon glyphicon-info-sign"></span>
           <span className="toolbar-item-text">About</span>
+        </div>
+        <div className="toolbar-item" onClick={this.toggleAbout}>
+          <span className="toolbar-item-button glyphicon glyphicon-bullhorn"></span>
+          <span className="toolbar-item-text">Tell a Friend</span>
         </div>
       </div>
     ) //return

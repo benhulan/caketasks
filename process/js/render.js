@@ -1,7 +1,7 @@
 var $ = jQuery = require('jquery');
 var _ = require('lodash');
+// var tether = require('tether'); // dependency for Bootstrap 4, which has tooltips
 var bootstrap = require('bootstrap');
-var Slider = require('bootstrap-slider');
 
 var fs = eRequire('fs');
 var loadApts = JSON.parse(fs.readFileSync(dataLocation));
@@ -11,6 +11,7 @@ var ipc = electron.ipcRenderer;
 
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Slider = require('react-bootstrap-slider');
 var AptList = require('./AptList');
 var Toolbar = require('./Toolbar');
 var HeaderNav = require('./HeaderNav');
@@ -55,9 +56,9 @@ var MainInterface = React.createClass({
   }, //toggleAptDisplay
 
   changeEffort: function() {
-    // var mySlider = new Slider(slider);
-    var mySlider = document.getElementById('aptEffort').slider();
-    console.log(mySlider);
+    var mySlider = new Slider(slider);
+    // var mySlider = document.getElementById('aptEffort').slider();
+    // console.log(mySlider);
     // var minSliderValue = mySlider.data("slider-min");
     // var maxSliderValue = mySlider.data("slider-max");
 
