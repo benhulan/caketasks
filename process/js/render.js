@@ -1,6 +1,8 @@
 var $ = jQuery = require('jquery');
 var _ = require('lodash');
+// var tether = require('tether'); // dependency for Bootstrap 4, which has tooltips
 var bootstrap = require('bootstrap');
+
 var fs = eRequire('fs');
 var loadApts = JSON.parse(fs.readFileSync(dataLocation));
 
@@ -9,6 +11,7 @@ var ipc = electron.ipcRenderer;
 
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Slider = require('react-bootstrap-slider');
 var AptList = require('./AptList');
 var Toolbar = require('./Toolbar');
 var HeaderNav = require('./HeaderNav');
@@ -26,17 +29,16 @@ var MainInterface = React.createClass({
   }, //getInitialState
 
   componentDidMount: function() {
-    ipc.on('addAppointment', function(event,message) {
+    ipc.on('addAppointment', function(event, message) {
       this.toggleAptDisplay();
     }.bind(this));
-  }, //componentDidMount
+  },
 
   componentWillUnmount: function() {
-    ipc.removeListener('addAppointment', function(event,message) {
+    ipc.removeListener('addAppointment', function(event, message) {
       this.toggleAptDisplay();
     }.bind(this));
-  }, //componentDidMount
-
+  },  
   componentDidUpdate: function() {
     fs.writeFile(dataLocation, JSON.stringify(this.state.myAppointments), 'utf8', function(err) {
       if (err) {
@@ -51,6 +53,29 @@ var MainInterface = React.createClass({
       aptBodyVisible: tempVisibility
     }); //setState
   }, //toggleAptDisplay
+
+  changeEffort: function() {
+    var mySlider = new Slider(slider);
+    // var mySlider = document.getElementById('aptEffort').slider();
+    // console.log(mySlider);
+    // var minSliderValue = mySlider.data("slider-min");
+    // var maxSliderValue = mySlider.data("slider-max");
+
+    // document.getElementById('aptEffort').slider();
+    // var tempVariable = document.getElementById('aptEffort');
+
+    // If You want to change input text using slider handler
+    mySlider.on('slide', function(slider){
+      document.getElementById("inputValue").val(slider.value);
+    });
+
+    // If you want to change slider using input text
+    // document.getElementById("inputValue").on("keyup", function() {
+    //     var val = Math.abs(parseInt(this.value, 10) || minSliderValue);
+    //     this.value = val > maxSliderValue ? maxSliderValue : val;
+    //     mySlider.setValue(val);
+    // });
+  },
 
   showAbout:function() {
     ipc.sendSync('openInfoWindow');
@@ -104,6 +129,7 @@ var MainInterface = React.createClass({
         (myAppointments[i].petName.toLowerCase().indexOf(queryText)!=-1) ||
         (myAppointments[i].ownerName.toLowerCase().indexOf(queryText)!=-1) ||
         (myAppointments[i].aptDate.toLowerCase().indexOf(queryText)!=-1) ||
+        (myAppointments[i].aptEffort.toLowerCase().indexOf(queryText)!=-1) ||
         (myAppointments[i].aptNotes.toLowerCase().indexOf(queryText)!=-1)
       ) {
         filteredApts.push(myAppointments[i]);
@@ -140,11 +166,12 @@ var MainInterface = React.createClass({
           <AddAppointment
             handleToggle = {this.toggleAptDisplay}
             addApt = {this.addItem}
+            onEffortChange = {this.changeEffort}
           />
           <div className="container">
            <div className="row">
              <div className="appointments col-sm-12">
-               <h2 className="appointments-headline">Current Appointments</h2>
+               <h2 className="appointments-headline">Current Tasks:</h2>
                <ul className="item-list media-list">{filteredApts}</ul>
              </div>{/* col-sm-12 */}
            </div>{/* row */}

@@ -1,4 +1,6 @@
 var React = require('react');
+// var tether = require('tether');
+var bootstrap = require('bootstrap');
 
 var defaultDate = new Date();
 defaultDate.setDate(defaultDate.getDate() + 14);
@@ -21,12 +23,17 @@ var AddAppointment = React.createClass({
     this.props.handleToggle();
   },
 
+  getEffort: function() {
+    this.props.onEffortChange(this.props.singleItem.aptEffort);
+  },
+
   handleAdd: function(e) {
     e.preventDefault();
     var tempItem = {
       petName: this.inputPetName.value,
       ownerName: this.inputPetOwner.value,
       aptDate: this.inputAptDate.value + ' ' + this.inputAptTime.value,
+      aptEffort: this.inputEffort.value,
       aptNotes: this.inputAptNotes.value,
     } //tempitems
 
@@ -35,7 +42,8 @@ var AddAppointment = React.createClass({
     this.inputPetName.value = '';
     this.inputPetOwner.value = '';
     this.inputAptDate.value = formatDate(defaultDate, '-');
-    this.inputAptTime.value = '09:00';
+    this.inputAptTime.value = '08:15';
+    this.inputEffort.value = '0';
     this.inputAptNotes.value = '';
     
   }, //handleAdd
@@ -47,26 +55,25 @@ var AddAppointment = React.createClass({
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" onClick={this.toggleAptDisplay} aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 className="modal-title">Add an Appointment</h4>
+              <h4 className="modal-title">Add a Task</h4>
             </div>
-
             <form className="modal-body add-appointment form-horizontal" onSubmit={this.handleAdd}>
               <div className="form-group">
-                <label className="col-sm-3 control-label" htmlFor="petName">Pet Name</label>
+                <label className="col-sm-3 control-label" htmlFor="petName">Task</label>
                 <div className="col-sm-9">
                   <input type="text" className="form-control"
-                    id="petName" ref={(ref) => this.inputPetName = ref } placeholder="Pet's Name" />
+                    id="petName" ref={(ref) => this.inputPetName = ref } placeholder="Task" />
                 </div>
               </div>
               <div className="form-group">
-                <label className="col-sm-3 control-label" htmlFor="petOwner">Pet Owner</label>
+                <label className="col-sm-3 control-label" htmlFor="petOwner">Subject</label>
                 <div className="col-sm-9">
                   <input type="text" className="form-control"
-                    id="petOwner"  ref={(ref) => this.inputPetOwner = ref } placeholder="Owner's Name" />
+                    id="petOwner"  ref={(ref) => this.inputPetOwner = ref } placeholder="Subject" />
                 </div>
               </div>
               <div className="form-group">
-                <label className="col-sm-3 control-label" htmlFor="aptDate">Date</label>
+                <label className="col-sm-3 control-label" htmlFor="aptDate">Date Due</label>
                 <div className="col-sm-9">
                   <input type="date" className="form-control"
                     id="aptDate"  ref={(ref) => this.inputAptDate = ref }
@@ -74,24 +81,31 @@ var AddAppointment = React.createClass({
                 </div>
               </div>
               <div className="form-group">
-                <label className="col-sm-3 control-label" htmlFor="aptTime">Time</label>
+                <label className="col-sm-3 control-label" htmlFor="aptTime">Time Due</label>
                 <div className="col-sm-9">
                   <input type="time" className="form-control"
-                    id="aptTime"  ref={(ref) => this.inputAptTime = ref } defaultValue={'09:00'} />
+                    id="aptTime"  ref={(ref) => this.inputAptTime = ref } defaultValue={'08:15'} />
                 </div>
               </div>
               <div className="form-group">
-                <label className="col-sm-3 control-label" htmlFor="aptNotes">Apt. Notes</label>
+                <label className="col-sm-3 control-label" htmlFor="aptEffort">Effort</label>
+                <div className="col-sm-9">
+                    <input id="aptEffort" onChange={this.getEffort} ref={(ref) => this.inputEffort = ref} defaultValue={'0'} type="text" name="aptEffort" data-provide="slider" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="0" />
+                    <span className="toolbar-item-button glyphicon glyphicon-question-sign"></span>
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="col-sm-3 control-label" htmlFor="aptNotes">Notes</label>
                 <div className="col-sm-9">
                   <textarea className="form-control" rows="4" cols="50"
-                    id="aptNotes"  ref={(ref) => this.inputAptNotes = ref } placeholder="Appointment Notes"></textarea>
+                    id="aptNotes"  ref={(ref) => this.inputAptNotes = ref } placeholder="Notes"></textarea>
                 </div>
               </div>
               <div className="form-group">
                 <div className="col-sm-offset-3 col-sm-9">
                   <div className="pull-right">
                     <button type="button" className="btn btn-default"  onClick={this.toggleAptDisplay}>Cancel</button>&nbsp;
-                    <button type="submit" className="btn btn-primary">Add Appointment</button>
+                    <button type="submit" className="btn btn-primary">Add Task</button>
                   </div>
                 </div>
               </div>

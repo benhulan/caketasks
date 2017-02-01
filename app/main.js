@@ -5,8 +5,8 @@ var app = electron.app;
 var ipc = electron.ipcMain;
 var myAppMenu, menuTemplate;
 
-function toggleWindow(whichWindow) {
-  if (whichWindow.isVisible()) {
+function toggleWindow(whichWindow){
+  if(whichWindow.isVisible()) {
     whichWindow.hide();
   } else {
     whichWindow.show();
@@ -26,6 +26,7 @@ app.on('ready', function() {
     height: 300,
     transparent: true,
     show: false,
+    modal: true,
     frame: false
   }); //infoWindow
 
@@ -47,27 +48,27 @@ app.on('ready', function() {
 
   menuTemplate = [
     {
-      label: 'Wisdom Pet',
+      label: 'CakeTasks',
       submenu: [
         {
-          label: 'About this App',
-          accelerator: process.platform === 'darwin' ? 'Command+I': 'Ctrl+I',
-          click(item) { toggleWindow(infoWindow)}
-        },{
+          label: 'About',
+          accelerator: process.platform === 'darwin' ? 'Command+I' : 'Ctrl+I',
+          click(item){ toggleWindow(infoWindow)}
+        }, {
           label: 'Add Appointment',
-          accelerator: process.platform === 'darwin' ? 'Command+N':'Ctrl+N',
-          click(item,focusedWindow) {
-            if (focusedWindow) focusedWindow.webContents.send('addAppointment');
+          accelerator: process.platform === 'darwin' ? 'Command+N' : 'Ctrl+N',
+          click(item, focusedWindow) {
+            if(focusedWindow) focusedWindow.webContents.send('addApt');
           }
-        },{
+        }, {
           role: 'help',
-          label: 'Our Website',
-          click() { electron.shell.openExternal('http://raybo.org')}
+          label: 'Website',
+          click() { electron.shell.openExternal('http://benhulan.com')}
         },
-        {role: 'close'},
-        {role: 'quit'}
+        {role: 'quit'},
+        {role: 'close'}
       ]
-    },{
+    }, {
       label: 'Edit',
       submenu: [
         {role: 'undo'},
@@ -77,31 +78,24 @@ app.on('ready', function() {
         {role: 'paste'},
         {role: 'selectall'}
       ]
-    },{
-        label: 'View',
-        submenu: [
-          {
-            label: 'Reload',
-            accelerator: 'CmdOrCtrl+R',
-            click (item, focusedWindow) {
-              if (focusedWindow) focusedWindow.reload()
-            }
-          },
-          {
-            label: 'Toggle Developer Tools',
-            accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-            click (item, focusedWindow) {
-              if (focusedWindow) focusedWindow.webContents.toggleDevTools()
-            }
-          },
-          {type: 'separator'},
-          {role: 'resetzoom'},
-          {role: 'zoomin'},
-          {role: 'zoomout'},
-          {type: 'separator'},
-          {role: 'togglefullscreen'}
-        ]
-      },
+    }, {
+      label: 'View',
+      submenu: [
+        {
+          label: 'Reload',
+          accelerator: 'CmdOrCtrl+R',
+          click(item, focusedWindow) {
+            if(focusedWindow) focusedWindow.reload()
+          }
+        }, {
+          label: 'Dev Tools',
+          accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+          click(item, focusedWindow) {
+            if (focusedWindow) focusedWindow.webContents.toggleDevTools()
+          }
+        }
+      ]
+    }
   ];
 
   myAppMenu = Menu.buildFromTemplate(menuTemplate);
