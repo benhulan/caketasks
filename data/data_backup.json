@@ -1,30 +1,30 @@
 [
   {
-    "taskName": "Read to p.40",
+    "taskName": "Reading",
     "taskSubject": "English",
-    "dueDate": "2016-06-20 15:30",
-    "taskEffort": 1,
-    "taskNotes": "Their Eyes Were Watching God"
+    "dueDate": "2017-02-20 15:30",
+    "taskEffort": 4,
+    "taskNotes": "Their Eyes Were Watching God, Chapter 1, pages 9-41"
   },
   {
-    "taskName": "Unit 3, Lesson 12, 1-31 odd, 32, 34",
+    "taskName": "Unit 3, Lesson 12",
     "taskSubject": "Algebra 2 Trig",
-    "dueDate": "2016-06-24 08:30",
-    "taskEffort": 2,
-    "taskNotes": "SOHCAHTOA"
+    "dueDate": "2017-02-24 08:30",
+    "taskEffort": 3,
+    "taskNotes": "1-31 odd, 32, 34 'SOHCAHTOA'"
   },
   {
-    "taskName": "Unit 3 Quiz",
+    "taskName": "Unit 3 Practice Quiz",
     "taskSubject": "Math",
-    "dueDate": "2016-06-22 15:50",
-    "taskEffort": 3,
-    "taskNotes": "Test Friday"
+    "dueDate": "2017-02-22 15:50",
+    "taskEffort": 1,
+    "taskNotes": "Test Friday!"
   },
   {
     "taskName": "Science in the News",
-    "taskSubject": "Science",
-    "dueDate": "2016-06-21 9:15",
+    "taskSubject": "Physics",
+    "dueDate": "2017-02-21 9:15",
     "taskEffort": 2,
-    "taskNotes": "Easy stuff"
+    "taskNotes": "Find an article and write a paragraph about it"
   }
 ]

@@ -38,12 +38,11 @@ var AddTask = React.createClass({
     } //tempitems
 
     this.props.addTask(tempItem);
-
     this.inputTaskName.value = '';
     this.inputTaskSubject.value = '';
     this.inputDueDate.value = formatDate(defaultDate, '-');
     this.inputDueTime.value = '08:15';
-    this.inputEffort.value = '0';
+    this.inputTaskEffort.value = '0';
     this.inputTaskNotes.value = '';
     
   }, //handleAdd
@@ -55,7 +54,7 @@ var AddTask = React.createClass({
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" onClick={this.toggleTaskDisplay} aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 className="modal-title">Add a Task</h4>
+              <h4 className="modal-title">Add a New Task:</h4>
             </div>
             <form className="modal-body add-task form-horizontal" onSubmit={this.handleAdd}>
               <div className="form-group">
@@ -66,10 +65,10 @@ var AddTask = React.createClass({
                 </div>
               </div>
               <div className="form-group">
-                <label className="col-sm-3 control-label" htmlFor="task">Subject</label>
+                <label className="col-sm-3 control-label" htmlFor="taskSubject">Subject</label>
                 <div className="col-sm-9">
                   <input type="text" className="form-control"
-                    id="task"  ref={(ref) => this.inputTaskSubject = ref } placeholder="Subject" />
+                    id="taskSubject"  ref={(ref) => this.inputTaskSubject = ref } placeholder="Subject" />
                 </div>
               </div>
               <div className="form-group">
@@ -84,13 +83,13 @@ var AddTask = React.createClass({
                 <label className="col-sm-3 control-label" htmlFor="dueTime">Time Due</label>
                 <div className="col-sm-9">
                   <input type="time" className="form-control"
-                    id="aptTime"  ref={(ref) => this.inputDueTime = ref } defaultValue={'08:15'} />
+                    id="dueTime"  ref={(ref) => this.inputDueTime = ref } defaultValue={'08:15'} />
                 </div>
               </div>
               <div className="form-group">
                 <label className="col-sm-3 control-label" htmlFor="taskEffort">Effort</label>
                 <div className="col-sm-9">
-                    <input id="taskEffort" onChange={this.getEffort} ref={(ref) => this.inputEffort = ref} defaultValue={'0'} type="text" name="taskEffort" data-provide="slider" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="0" />
+                    <input id="taskEffort" onChange={this.getEffort} ref={(ref) => this.inputTaskEffort = ref} defaultValue={'0'} type="text" name="taskEffort" data-provide="slider" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="0" />
                     <span className="toolbar-item-button glyphicon glyphicon-question-sign"></span>
                 </div>
               </div>

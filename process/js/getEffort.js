@@ -4,15 +4,15 @@ function getEffort(){
 
     document.getElementById('taskEffort').slider({
         value : 0,
-      formatter: function(value) {
-        return 'Effort: ' + value;
-      }
+        formatter: function(value) {
+          return 'Effort: ' + value;
+        }
     });
 
     // If You want to change input text using slider handler
-    document.getElementById('taskEffort').on('slide', function(slider){
-      document.getElementById("inputValue").val(slider.value);
-    });
+    // document.getElementById('taskEffort').on('slide', function(slider){
+    //   document.getElementById("inputValue").val(slider.value);
+    // });
 
     // If you want to change slider using input text
     document.getElementById("inputValue").on("keyup", function() {

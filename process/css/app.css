@@ -181,7 +181,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #296B73;
   font-size: 1.3em;
 }
-.item-list .apt-notes {
+.item-list .task-notes {
   font-style: italic;
 }
 
@@ -191,7 +191,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: 10px;
 }
 
-.item-list .apt-date {
+.item-list .task-date {
   font-style: italic;
 }
 

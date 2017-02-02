@@ -66,7 +66,7 @@ var MainInterface = React.createClass({
 
     // If You want to change input text using slider handler
     mySlider.on('slide', function(slider){
-      document.getElementById("inputValue").val(slider.value);
+      document.getElementById("taskEffort").val(slider.value);
     });
 
     // If you want to change slider using input text
@@ -81,14 +81,14 @@ var MainInterface = React.createClass({
     ipc.sendSync('openInfoWindow');
   }, //showAbout
 
-  addItem: function(tempItem) {
+  addTask: function(tempItem) {
     var tempTasks = this.state.myTasks;
     tempTasks.push(tempItem);
     this.setState({
       myTasks: tempTasks,
       taskBodyVisible: false
     }) //setState
-  }, //addItem
+  }, //addTask
 
   deleteMessage: function(item) {
     var allTasks = this.state.myTasks;
@@ -105,11 +105,11 @@ var MainInterface = React.createClass({
     }) //setState
   }, //reOrder
 
-  searchApts: function(query) {
+  searchTasks: function(query) {
     this.setState({
       queryText: query
     }); //setState
-  }, //searchApts
+  }, //searchTasks
 
   render: function() {
     var filteredTasks = [];
@@ -129,7 +129,6 @@ var MainInterface = React.createClass({
         (myTasks[i].taskName.toLowerCase().indexOf(queryText)!=-1) ||
         (myTasks[i].taskSubject.toLowerCase().indexOf(queryText)!=-1) ||
         (myTasks[i].dueDate.toLowerCase().indexOf(queryText)!=-1) ||
-        (myTasks[i].taskEffort.toLowerCase().indexOf(queryText)!=-1) ||
         (myTasks[i].taskNotes.toLowerCase().indexOf(queryText)!=-1)
       ) {
         filteredTasks.push(myTasks[i]);
@@ -137,7 +136,7 @@ var MainInterface = React.createClass({
     }
 
     filteredTasks = _.orderBy(filteredTasks, function(item) {
-      return item[orderBy].toLowerCase();
+      return item[orderBy];
     }, orderDir); // order array
 
     filteredTasks=filteredTasks.map(function(item, index) {
@@ -156,7 +155,7 @@ var MainInterface = React.createClass({
           orderBy = {this.state.orderBy}
           orderDir =  {this.state.orderDir}
           onReOrder = {this.reOrder}
-          onSearch= {this.searchApts}
+          onSearch= {this.searchTasks}
         />
         <div className="interface">
           <Toolbar
@@ -165,13 +164,13 @@ var MainInterface = React.createClass({
           />
           <AddTask
             handleToggle = {this.toggleTaskDisplay}
-            addApt = {this.addItem}
+            addTask = {this.addTask}
             onEffortChange = {this.changeEffort}
           />
           <div className="container">
            <div className="row">
-             <div className="appointments col-sm-12">
-               <h2 className="appointments-headline">Current Tasks:</h2>
+             <div className="tasks col-sm-12">
+               <h2 className="tasks-headline">Active Tasks:</h2>
                <ul className="item-list media-list">{filteredTasks}</ul>
              </div>{/* col-sm-12 */}
            </div>{/* row */}

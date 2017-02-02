@@ -48,3 +48,10 @@ html {
   width: 100px;
   opacity: .8;
 }
+
+.slider-selection { 
+    background-image: -webkit-linear-gradient(top, #149bdf 0%, #0480be 100%);
+    background-image: -o-linear-gradient(top, #149bdf 0%, #0480be 100%);
+    background-image: -webkit-linear-gradient(top, #149bdf 0%, #0480be 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#149bdf', endColorstr='#0480be', GradientType=0);
+}

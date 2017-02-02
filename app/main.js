@@ -55,7 +55,7 @@ app.on('ready', function() {
           accelerator: process.platform === 'darwin' ? 'Command+I' : 'Ctrl+I',
           click(item){ toggleWindow(infoWindow)}
         }, {
-          label: 'Add Appointment',
+          label: 'Add Task',
           accelerator: process.platform === 'darwin' ? 'Command+N' : 'Ctrl+N',
           click(item, focusedWindow) {
             if(focusedWindow) focusedWindow.webContents.send('addTask');
