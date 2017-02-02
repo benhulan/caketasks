@@ -16,6 +16,7 @@ var TaskList = require('./TaskList');
 var Toolbar = require('./Toolbar');
 var HeaderNav = require('./HeaderNav');
 var AddTask = require('./AddTask');
+var EditTask = require('./EditTask');
 
 var MainInterface = React.createClass({
   getInitialState: function() {
@@ -32,11 +33,17 @@ var MainInterface = React.createClass({
     ipc.on('addTask', function(event, message) {
       this.toggleTaskDisplay();
     }.bind(this));
+    ipc.on('editTask', function(event, message) {
+      this.toggleEditTaskDisplay();
+    }.bind(this));
   },
 
   componentWillUnmount: function() {
     ipc.removeListener('addTask', function(event, message) {
       this.toggleTaskDisplay();
+    }.bind(this));
+    ipc.removeListener('editTask', function(event, message) {
+      this.toggleEditTaskDisplay();
     }.bind(this));
   },  
   componentDidUpdate: function() {
@@ -53,6 +60,13 @@ var MainInterface = React.createClass({
       taskBodyVisible: tempVisibility
     }); //setState
   }, //toggleTaskDisplay
+
+  toggleEditTaskDisplay: function() {
+    var tempVisibility = !this.state.editTaskBodyVisible;
+    this.setState({
+      editTaskBodyVisible: tempVisibility
+    });
+  },
 
   changeEffort: function() {
     var mySlider = new Slider(slider);
@@ -89,6 +103,15 @@ var MainInterface = React.createClass({
       taskBodyVisible: false
     }) //setState
   }, //addTask
+
+  editTask: function(tempItem) {
+    var tempTasks = this.state.myTasks;
+    tempTasks.push(tempItem);
+    this.setState({
+      myTasks: tempTasks,
+      taskBodyVisible: false
+    }) //setState
+  }, //editTask
 
   deleteMessage: function(item) {
     var allTasks = this.state.myTasks;
@@ -145,6 +168,7 @@ var MainInterface = React.createClass({
           singleItem = {item}
           whichItem =  {item}
           onDelete = {this.deleteMessage}
+          onEdit = {this.editMessage}
         />
       ) // return
     }.bind(this)); //Tasks.map
@@ -165,6 +189,11 @@ var MainInterface = React.createClass({
           <AddTask
             handleToggle = {this.toggleTaskDisplay}
             addTask = {this.addTask}
+            onEffortChange = {this.changeEffort}
+          />
+          <EditTask
+            handleToggle = {this.toggleEditTaskDisplay}
+            editTask = {this.editTask}
             onEffortChange = {this.changeEffort}
           />
           <div className="container">

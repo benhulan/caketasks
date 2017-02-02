@@ -4,6 +4,9 @@ var TaskList = React.createClass({
   handleDelete: function() {
     this.props.onDelete(this.props.whichItem);
   },
+  handleEdit: function() {
+    this.props.onEdit(this.props.whichItem);
+  },
   render: function() {
     return(
       <li className="task-item media">
