@@ -170,7 +170,7 @@ var MainInterface = React.createClass({
           <div className="container">
            <div className="row">
              <div className="tasks col-sm-12">
-               <h2 className="tasks-headline">Active Tasks:</h2>
+               {/*<h2 className="tasks-headline">My Tasks:</h2>*/}
                <ul className="item-list media-list">{filteredTasks}</ul>
              </div>{/* col-sm-12 */}
            </div>{/* row */}
