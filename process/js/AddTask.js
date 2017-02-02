@@ -17,9 +17,9 @@ function formatDate(date, divider) {
   return ('' + year + divider + month + divider + day);
 }
 
-var AddAppointment = React.createClass({
+var AddTask = React.createClass({
 
-  toggleAptDisplay: function() {
+  toggleTaskDisplay: function() {
     this.props.handleToggle();
   },
 
@@ -31,9 +31,9 @@ var AddAppointment = React.createClass({
     e.preventDefault();
     var tempItem = {
       taskName: this.inputTaskName.value,
-      ownerName: this.inputTaskSubject.value,
+      taskSubject: this.inputTaskSubject.value,
       dueDate: this.inputDueDate.value + ' ' + this.inputDueTime.value,
-      taskEffort: this.inputEffort.value,
+      taskEffort: this.inputTaskEffort.value,
       taskNotes: this.inputTaskNotes.value,
     } //tempitems
 
@@ -50,14 +50,14 @@ var AddAppointment = React.createClass({
 
   render: function() {
     return(
-      <div className="modal fade" id="addAppointment" tabIndex="-1" role="dialog">
+      <div className="modal fade" id="addTask" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <button type="button" className="close" onClick={this.toggleAptDisplay} aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <button type="button" className="close" onClick={this.toggleTaskDisplay} aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 className="modal-title">Add a Task</h4>
             </div>
-            <form className="modal-body add-appointment form-horizontal" onSubmit={this.handleAdd}>
+            <form className="modal-body add-task form-horizontal" onSubmit={this.handleAdd}>
               <div className="form-group">
                 <label className="col-sm-3 control-label" htmlFor="taskName">Task</label>
                 <div className="col-sm-9">
@@ -81,7 +81,7 @@ var AddAppointment = React.createClass({
                 </div>
               </div>
               <div className="form-group">
-                <label className="col-sm-3 control-label" htmlFor="aptTime">Time Due</label>
+                <label className="col-sm-3 control-label" htmlFor="dueTime">Time Due</label>
                 <div className="col-sm-9">
                   <input type="time" className="form-control"
                     id="aptTime"  ref={(ref) => this.inputDueTime = ref } defaultValue={'08:15'} />
@@ -104,7 +104,7 @@ var AddAppointment = React.createClass({
               <div className="form-group">
                 <div className="col-sm-offset-3 col-sm-9">
                   <div className="pull-right">
-                    <button type="button" className="btn btn-default"  onClick={this.toggleAptDisplay}>Cancel</button>&nbsp;
+                    <button type="button" className="btn btn-default"  onClick={this.toggleTaskDisplay}>Cancel</button>&nbsp;
                     <button type="submit" className="btn btn-primary">Add Task</button>
                   </div>
                 </div>
@@ -115,6 +115,6 @@ var AddAppointment = React.createClass({
       </div>
     ) //return
   } //render
-}); //AddAppointment
+}); //AddTask
 
-module.exports=AddAppointment;
+module.exports=AddTask;

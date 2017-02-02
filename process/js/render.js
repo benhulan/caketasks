@@ -20,7 +20,7 @@ var AddTask = require('./AddTask');
 var MainInterface = React.createClass({
   getInitialState: function() {
     return {
-      aptBodyVisible: false,
+      taskBodyVisible: false,
       orderBy: 'taskName',
       orderDir: 'asc',
       queryText: '',
@@ -48,9 +48,9 @@ var MainInterface = React.createClass({
   }, //componentDidUpdate
 
   toggleTaskDisplay: function() {
-    var tempVisibility = !this.state.aptBodyVisible;
+    var tempVisibility = !this.state.taskBodyVisible;
     this.setState({
-      aptBodyVisible: tempVisibility
+      taskBodyVisible: tempVisibility
     }); //setState
   }, //toggleTaskDisplay
 
@@ -86,7 +86,7 @@ var MainInterface = React.createClass({
     tempTasks.push(tempItem);
     this.setState({
       myTasks: tempTasks,
-      aptBodyVisible: false
+      taskBodyVisible: false
     }) //setState
   }, //addItem
 
@@ -118,7 +118,7 @@ var MainInterface = React.createClass({
     var orderDir = this.state.orderDir;
     var myTasks = this.state.myTasks;
 
-    if(this.state.aptBodyVisible === true) {
+    if(this.state.taskBodyVisible === true) {
       $('#addTask').modal('show');
     } else {
       $('#addTask').modal('hide');
