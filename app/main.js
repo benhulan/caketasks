@@ -58,7 +58,7 @@ app.on('ready', function() {
           label: 'Add Appointment',
           accelerator: process.platform === 'darwin' ? 'Command+N' : 'Ctrl+N',
           click(item, focusedWindow) {
-            if(focusedWindow) focusedWindow.webContents.send('addApt');
+            if(focusedWindow) focusedWindow.webContents.send('addTask');
           }
         }, {
           role: 'help',

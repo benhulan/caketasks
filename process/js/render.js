@@ -4,7 +4,7 @@ var _ = require('lodash');
 var bootstrap = require('bootstrap');
 
 var fs = eRequire('fs');
-var loadApts = JSON.parse(fs.readFileSync(dataLocation));
+var loadTasks = JSON.parse(fs.readFileSync(dataLocation));
 
 var electron = eRequire('electron');
 var ipc = electron.ipcRenderer;
@@ -12,57 +12,57 @@ var ipc = electron.ipcRenderer;
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Slider = require('react-bootstrap-slider');
-var AptList = require('./AptList');
+var TaskList = require('./TaskList');
 var Toolbar = require('./Toolbar');
 var HeaderNav = require('./HeaderNav');
-var AddAppointment = require('./AddAppointment');
+var AddTask = require('./AddTask');
 
 var MainInterface = React.createClass({
   getInitialState: function() {
     return {
       aptBodyVisible: false,
-      orderBy: 'petName',
+      orderBy: 'taskName',
       orderDir: 'asc',
       queryText: '',
-      myAppointments: loadApts
+      myTasks: loadTasks
     }//return
   }, //getInitialState
 
   componentDidMount: function() {
-    ipc.on('addAppointment', function(event, message) {
-      this.toggleAptDisplay();
+    ipc.on('addTask', function(event, message) {
+      this.toggleTaskDisplay();
     }.bind(this));
   },
 
   componentWillUnmount: function() {
-    ipc.removeListener('addAppointment', function(event, message) {
-      this.toggleAptDisplay();
+    ipc.removeListener('addTask', function(event, message) {
+      this.toggleTaskDisplay();
     }.bind(this));
   },  
   componentDidUpdate: function() {
-    fs.writeFile(dataLocation, JSON.stringify(this.state.myAppointments), 'utf8', function(err) {
+    fs.writeFile(dataLocation, JSON.stringify(this.state.myTasks), 'utf8', function(err) {
       if (err) {
         console.log(err);
       }
     });//writeFile
   }, //componentDidUpdate
 
-  toggleAptDisplay: function() {
+  toggleTaskDisplay: function() {
     var tempVisibility = !this.state.aptBodyVisible;
     this.setState({
       aptBodyVisible: tempVisibility
     }); //setState
-  }, //toggleAptDisplay
+  }, //toggleTaskDisplay
 
   changeEffort: function() {
     var mySlider = new Slider(slider);
-    // var mySlider = document.getElementById('aptEffort').slider();
+    // var mySlider = document.getElementById('taskEffort').slider();
     // console.log(mySlider);
     // var minSliderValue = mySlider.data("slider-min");
     // var maxSliderValue = mySlider.data("slider-max");
 
-    // document.getElementById('aptEffort').slider();
-    // var tempVariable = document.getElementById('aptEffort');
+    // document.getElementById('taskEffort').slider();
+    // var tempVariable = document.getElementById('taskEffort');
 
     // If You want to change input text using slider handler
     mySlider.on('slide', function(slider){
@@ -82,19 +82,19 @@ var MainInterface = React.createClass({
   }, //showAbout
 
   addItem: function(tempItem) {
-    var tempApts = this.state.myAppointments;
-    tempApts.push(tempItem);
+    var tempTasks = this.state.myTasks;
+    tempTasks.push(tempItem);
     this.setState({
-      myAppointments: tempApts,
+      myTasks: tempTasks,
       aptBodyVisible: false
     }) //setState
   }, //addItem
 
   deleteMessage: function(item) {
-    var allApts = this.state.myAppointments;
-    var newApts = _.without(allApts, item);
+    var allTasks = this.state.myTasks;
+    var newTasks = _.without(allTasks, item);
     this.setState({
-      myAppointments: newApts
+      myTasks: newTasks
     }); //setState
   }, //deleteMessage
 
@@ -112,43 +112,43 @@ var MainInterface = React.createClass({
   }, //searchApts
 
   render: function() {
-    var filteredApts = [];
+    var filteredTasks = [];
     var queryText = this.state.queryText;
     var orderBy = this.state.orderBy;
     var orderDir = this.state.orderDir;
-    var myAppointments = this.state.myAppointments;
+    var myTasks = this.state.myTasks;
 
     if(this.state.aptBodyVisible === true) {
-      $('#addAppointment').modal('show');
+      $('#addTask').modal('show');
     } else {
-      $('#addAppointment').modal('hide');
+      $('#addTask').modal('hide');
     }
 
-    for (var i = 0; i < myAppointments.length; i++) {
+    for (var i = 0; i < myTasks.length; i++) {
       if (
-        (myAppointments[i].petName.toLowerCase().indexOf(queryText)!=-1) ||
-        (myAppointments[i].ownerName.toLowerCase().indexOf(queryText)!=-1) ||
-        (myAppointments[i].aptDate.toLowerCase().indexOf(queryText)!=-1) ||
-        (myAppointments[i].aptEffort.toLowerCase().indexOf(queryText)!=-1) ||
-        (myAppointments[i].aptNotes.toLowerCase().indexOf(queryText)!=-1)
+        (myTasks[i].taskName.toLowerCase().indexOf(queryText)!=-1) ||
+        (myTasks[i].taskSubject.toLowerCase().indexOf(queryText)!=-1) ||
+        (myTasks[i].dueDate.toLowerCase().indexOf(queryText)!=-1) ||
+        (myTasks[i].taskEffort.toLowerCase().indexOf(queryText)!=-1) ||
+        (myTasks[i].taskNotes.toLowerCase().indexOf(queryText)!=-1)
       ) {
-        filteredApts.push(myAppointments[i]);
+        filteredTasks.push(myTasks[i]);
       }
     }
 
-    filteredApts = _.orderBy(filteredApts, function(item) {
+    filteredTasks = _.orderBy(filteredTasks, function(item) {
       return item[orderBy].toLowerCase();
     }, orderDir); // order array
 
-    filteredApts=filteredApts.map(function(item, index) {
+    filteredTasks=filteredTasks.map(function(item, index) {
       return(
-        <AptList key = {index}
+        <TaskList key = {index}
           singleItem = {item}
           whichItem =  {item}
           onDelete = {this.deleteMessage}
         />
       ) // return
-    }.bind(this)); //Appointments.map
+    }.bind(this)); //Tasks.map
 
     return(
       <div className="application">
@@ -160,11 +160,11 @@ var MainInterface = React.createClass({
         />
         <div className="interface">
           <Toolbar
-            handleToggle = {this.toggleAptDisplay}
+            handleToggle = {this.toggleTaskDisplay}
             handleAbout = {this.showAbout}
           />
-          <AddAppointment
-            handleToggle = {this.toggleAptDisplay}
+          <AddTask
+            handleToggle = {this.toggleTaskDisplay}
             addApt = {this.addItem}
             onEffortChange = {this.changeEffort}
           />
@@ -172,7 +172,7 @@ var MainInterface = React.createClass({
            <div className="row">
              <div className="appointments col-sm-12">
                <h2 className="appointments-headline">Current Tasks:</h2>
-               <ul className="item-list media-list">{filteredApts}</ul>
+               <ul className="item-list media-list">{filteredTasks}</ul>
              </div>{/* col-sm-12 */}
            </div>{/* row */}
           </div>{/* container */}
@@ -184,5 +184,5 @@ var MainInterface = React.createClass({
 
 ReactDOM.render(
   <MainInterface />,
-  document.getElementById('petAppointments')
+  document.getElementById('cakeTasks')
 ); //render

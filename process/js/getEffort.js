@@ -1,8 +1,8 @@
 function getEffort(){
-    var minSliderValue = document.getElementById("aptEffort").data("slider-min");
-    var maxSliderValue = document.getElementById("aptEffort").data("slider-max");
+    var minSliderValue = document.getElementById("taskEffort").data("slider-min");
+    var maxSliderValue = document.getElementById("taskEffort").data("slider-max");
 
-    document.getElementById('aptEffort').slider({
+    document.getElementById('taskEffort').slider({
         value : 0,
       formatter: function(value) {
         return 'Effort: ' + value;
@@ -10,7 +10,7 @@ function getEffort(){
     });
 
     // If You want to change input text using slider handler
-    document.getElementById('aptEffort').on('slide', function(slider){
+    document.getElementById('taskEffort').on('slide', function(slider){
       document.getElementById("inputValue").val(slider.value);
     });
 
@@ -18,6 +18,6 @@ function getEffort(){
     document.getElementById("inputValue").on("keyup", function() {
         var val = Math.abs(parseInt(this.value, 10) || minSliderValue);
         this.value = val > maxSliderValue ? maxSliderValue : val;
-        document.getElementById('aptEffort').slider('setValue', val);
+        document.getElementById('taskEffort').slider('setValue', val);
     });
 };
