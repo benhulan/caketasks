@@ -1,0 +1,30 @@
+[
+  {
+    "taskName": "Read to p.40",
+    "taskSubject": "English",
+    "dueDate": "2016-06-20 15:30",
+    "effort": 1,
+    "taskNotes": "Their Eyes Were Watching God"
+  },
+  {
+    "taskName": "Unit 3, Lesson 12, 1-31 odd, 32, 34",
+    "taskSubject": "Algebra 2 Trig",
+    "dueDate": "2016-`06-24 08:30",
+    "effort": 2,
+    "taskNotes": "SOHCAHTOA"
+  },
+  {
+    "taskName": "Unit 3 Quiz",
+    "taskSubject": "Math",
+    "dueDate": "2016-06-22 15:50",
+    "effort": 3,
+    "taskNotes": "Test Friday"
+  },
+  {
+    "taskName": "Science in the News",
+    "taskSubject": "Science",
+    "dueDate": "2016-06-21 9:15",
+    "effort": 2,
+    "taskNotes": "Easy stuff"
+  }
+]
