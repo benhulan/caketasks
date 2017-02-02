@@ -5,3 +5,4 @@ npm-debug.log
 app/js/render.js
 app/css/**/*.css
 app/google-classroom.html
+data/data.json
