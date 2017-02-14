@@ -10,6 +10,10 @@ var Toolbar = React.createClass({
     this.props.handleAbout();
   }, //toggleAbout
 
+  toggleView: function() {
+    this.props.handleView();
+  },
+  
   render: function() {
     return(
       <div className="toolbar">
@@ -21,7 +25,7 @@ var Toolbar = React.createClass({
           <span className="toolbar-item-button glyphicon glyphicon-download-alt"></span>
           <span className="toolbar-item-text">Import</span>
         </div>
-        <div className="toolbar-item" onClick={this.toggleAbout}>
+        <div className="toolbar-item" onClick={this.toggleView}>
           <span className="toolbar-item-button glyphicon glyphicon-eye-open"></span>
           <span className="toolbar-item-text">Change View</span>
         </div>

@@ -50,7 +50,7 @@ var EditTask = React.createClass({
 
   render: function() {
     return(
-      <div className="modal fade" id="editTask" tabIndex="-2" role="dialog">
+      <div className="modal fade" id="editTask" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">

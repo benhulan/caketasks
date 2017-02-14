@@ -22,6 +22,7 @@ var MainInterface = React.createClass({
   getInitialState: function() {
     return {
       taskBodyVisible: false,
+      editTaskBodyVisible: false,
       orderBy: 'taskName',
       orderDir: 'asc',
       queryText: '',
@@ -55,13 +56,19 @@ var MainInterface = React.createClass({
   }, //componentDidUpdate
 
   toggleTaskDisplay: function() {
+    console.log('toggleTaskDisplay called');
     var tempVisibility = !this.state.taskBodyVisible;
     this.setState({
       taskBodyVisible: tempVisibility
     }); //setState
   }, //toggleTaskDisplay
 
+  toggleViewDisplay: function() {
+    ipc.sendSync('changeView');
+  },
+
   toggleEditTaskDisplay: function() {
+    console.log('hello from toggleEditTaskDisplay');
     var tempVisibility = !this.state.editTaskBodyVisible;
     this.setState({
       editTaskBodyVisible: tempVisibility
@@ -109,7 +116,7 @@ var MainInterface = React.createClass({
     tempTasks.push(tempItem);
     this.setState({
       myTasks: tempTasks,
-      taskBodyVisible: false
+      editTaskBodyVisible: false
     }) //setState
   }, //editTask
 
@@ -142,9 +149,17 @@ var MainInterface = React.createClass({
     var myTasks = this.state.myTasks;
 
     if(this.state.taskBodyVisible === true) {
+      console.log('task body visible');
       $('#addTask').modal('show');
     } else {
       $('#addTask').modal('hide');
+    }
+
+    if(this.state.editTaskBodyVisible === true) {
+      console.log('edit visible');
+      $('#editTask').modal('show');
+    } else {
+      $('#editTask').modal('hide');
     }
 
     for (var i = 0; i < myTasks.length; i++) {
@@ -168,7 +183,7 @@ var MainInterface = React.createClass({
           singleItem = {item}
           whichItem =  {item}
           onDelete = {this.deleteMessage}
-          onEdit = {this.editMessage}
+          onEdit = {this.toggleEditTaskDisplay}
         />
       ) // return
     }.bind(this)); //Tasks.map
@@ -185,17 +200,19 @@ var MainInterface = React.createClass({
           <Toolbar
             handleToggle = {this.toggleTaskDisplay}
             handleAbout = {this.showAbout}
+            handleView = {this.toggleViewDisplay}
           />
           <AddTask
             handleToggle = {this.toggleTaskDisplay}
             addTask = {this.addTask}
-            onEffortChange = {this.changeEffort}
-          />
-          <EditTask
-            handleToggle = {this.toggleEditTaskDisplay}
             editTask = {this.editTask}
             onEffortChange = {this.changeEffort}
           />
+          {/*<EditTask
+            handleToggle = {this.toggleEditTaskDisplay}
+            editTask = {this.editTask}
+            onEffortChange = {this.changeEffort}
+          />*/}
           <div className="container">
            <div className="row">
              <div className="tasks col-sm-12">

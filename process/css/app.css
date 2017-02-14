@@ -1,9 +1,16 @@
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.css');
 @import url('../../node_modules/bootstrap-slider/dist/css/bootstrap-slider.css');
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt');
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+
 
 *, *:before, *:after {
   box-sizing: inherit;
 }
+body {
+  background-color: rgba(255,255,255,0) !important;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -15,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
   margin-bottom: 0;
   border-radius: 0;
-  background-image: url("../images/caketaskslogo.svg");
+  background-image: url("../images/caketasks-logo-4-200x200.png");
   background-repeat: no-repeat;
   background-size: 40px;
   background-position: 10px;
@@ -42,6 +49,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand {
+  font-family: 'Rock Salt', cursive;
   font-weight: bold;
 }
 
@@ -51,9 +59,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-form .form-control {
-    border: none;
-    border-radius: 4px;
-    box-shadow: none;
+  border: none;
+  border-radius: 4px;
+  box-shadow: none;
 }
 
 .navbar-form .btn-info {
@@ -234,8 +242,8 @@ h2.tasks-headline {
     margin-bottom: 0px;
 }
 
-#page-info {
-  background: transparent;
+#page-info, #page-view {
+  background:  rgba(255,255,255,0) !important;
   color: white;
   display: flex;
   flex-flow: row wrap;
@@ -246,33 +254,33 @@ h2.tasks-headline {
   cursor: pointer;
 }
 
-#page-info a:link {
+#page-info a:link, #page-view a:link {
   color: #EEC856;
 }
 
 
-#page-info .info-content {
+#page-info .info-content, #page-view .view-content{
   background: linear-gradient( 180deg,
-    rgba(116, 167, 204, .75),
-    rgba(38, 119, 178, .95));
+    rgba(116, 167, 204, 1),
+    rgba(38, 119, 178, 1));
   width: 90%;
   padding: 30px;
   border-radius: 20px;
   text-align: center;
   align-self: center;
-  border: 2px solid rgba(199, 92, 90, .95);
+  border: 2px solid rgba(199, 92, 90, 1);
   box-shadow: 5px 5px 20px rgba(0, 0, 0, .4);
   /*overflow:hidden;*/
 }
 
 
-#page-info .page-headline {
+#page-info .page-headline, #page-view .page-headline {
   font-size: 1.8em;
   color: #EEC856;
 }
 
-#page-info .close {
-  background: rgba(255,255,255,1);
+#page-info .close, #page-view .close {
+  background: rgba(255,255,255,0);
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -285,11 +293,11 @@ h2.tasks-headline {
   z-index: 20;
 }
 
-#page-info .close:focus, #page-info .close:hover {
+#page-info .close:focus, #page-info .close:hover, #page-view .close:focus, #page-view .close:hover {
   outline: none;
 }
 
-#page-info img {
+#page-info img, #page-view img {
   width: 100px;
   opacity: .8;
 }

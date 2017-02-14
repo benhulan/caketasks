@@ -47,6 +47,27 @@ var AddTask = React.createClass({
     
   }, //handleAdd
 
+   handleEdit: function(e) {
+    e.preventDefault();
+    var tempItem = {
+      taskName: this.inputTaskName.value,
+      taskSubject: this.inputTaskSubject.value,
+      dueDate: this.inputDueDate.value + ' ' + this.inputDueTime.value,
+      taskEffort: this.inputTaskEffort.value,
+      taskNotes: this.inputTaskNotes.value,
+    } //tempitems
+
+    this.props.editTask(tempItem);
+
+    this.inputTaskName.value = '';
+    this.inputTaskSubject.value = '';
+    this.inputDueDate.value = formatDate(defaultDate, '-');
+    this.inputDueTime.value = '08:15';
+    this.inputTaskEffort.value = '0';
+    this.inputTaskNotes.value = '';
+    
+  }, //handleEdit
+
   render: function() {
     return(
       <div className="modal fade" id="addTask" tabIndex="-1" role="dialog">

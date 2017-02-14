@@ -14,7 +14,7 @@ function toggleWindow(whichWindow){
 }
 
 app.on('ready', function() {
-  var appWindow, infoWindow;
+  var appWindow, infoWindow, viewInfoWindow;
   appWindow = new BrowserWindow({
     show: false
   }); //appWindow
@@ -30,7 +30,17 @@ app.on('ready', function() {
     frame: false
   }); //infoWindow
 
+  viewInfoWindow = new BrowserWindow({
+    width: 400,
+    height: 300,
+    transparent: false,
+    show: false,
+    modal: true,
+    frame: false
+  }); //viewInfoWindow
+
   infoWindow.loadURL('file://' + __dirname + '/info.html');
+  viewInfoWindow.loadURL('file://' + __dirname + '/view.html');
 
   appWindow.once('ready-to-show', function() {
     appWindow.show();
@@ -46,24 +56,36 @@ app.on('ready', function() {
     infoWindow.hide();
   }); //closeInfoWindow
 
+  ipc.on('changeView', function(event, arg){
+    event.returnValue='';
+    viewInfoWindow.show();
+  }); //closeInfoWindow
+
+  ipc.on('closeViewWindow', function(event, arg){
+    event.returnValue='';
+    viewInfoWindow.hide();
+  }); //closeInfoWindow
+
   menuTemplate = [
     {
       label: 'CakeTasks',
       submenu: [
         {
-          label: 'About',
-          accelerator: process.platform === 'darwin' ? 'Command+I' : 'Ctrl+I',
-          click(item){ toggleWindow(infoWindow)}
-        }, {
-          label: 'Add Task',
+          label: 'New Task',
           accelerator: process.platform === 'darwin' ? 'Command+N' : 'Ctrl+N',
           click(item, focusedWindow) {
             if(focusedWindow) focusedWindow.webContents.send('addTask');
-          }
-        }, {
+         }
+        },
+        {
+          label: 'About',
+          accelerator: process.platform === 'darwin' ? 'Command+I' : 'Ctrl+I',
+          click(item){ toggleWindow(infoWindow)}
+        },
+        {
           role: 'help',
           label: 'Website',
-          click() { electron.shell.openExternal('http://benhulan.com')}
+          click() { electron.shell.openExternal('http://caketasks.com')}
         },
         {role: 'quit'},
         {role: 'close'}
