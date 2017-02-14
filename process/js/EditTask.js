@@ -15,7 +15,7 @@ function formatDate(date, divider) {
   if (day <= 9) { day = '0' + day; }
 
   return ('' + year + divider + month + divider + day);
-}
+};
 
 var EditTask = React.createClass({
 
@@ -35,10 +35,12 @@ var EditTask = React.createClass({
       dueDate: this.inputDueDate.value + ' ' + this.inputDueTime.value,
       taskEffort: this.inputTaskEffort.value,
       taskNotes: this.inputTaskNotes.value,
-    } //tempitems
+      console.log('tempItem is ', tempItem);
+    } //tempItem
 
     this.props.editTask(tempItem);
 
+    // clear the form
     this.inputTaskName.value = '';
     this.inputTaskSubject.value = '';
     this.inputDueDate.value = formatDate(defaultDate, '-');
@@ -62,14 +64,14 @@ var EditTask = React.createClass({
                 <label className="col-sm-3 control-label" htmlFor="taskName">Task</label>
                 <div className="col-sm-9">
                   <input type="text" className="form-control"
-                    id="taskName" ref={(ref) => this.inputTaskName = ref } placeholder="{this.inputTaskName}" />
+                    id="taskName" ref={(ref) => this.inputTaskName = ref } placeholder={this.inputTaskName} />
                 </div>
               </div>
               <div className="form-group">
                 <label className="col-sm-3 control-label" htmlFor="taskSubject">Subject</label>
                 <div className="col-sm-9">
                   <input type="text" className="form-control"
-                    id="taskSubject"  ref={(ref) => this.inputTaskSubject = ref } placeholder="{this.inputTaskSubject}" />
+                    id="taskSubject"  ref={(ref) => this.inputTaskSubject = ref } placeholder={this.inputTaskSubject} />
                 </div>
               </div>
               <div className="form-group">
@@ -98,7 +100,7 @@ var EditTask = React.createClass({
                 <label className="col-sm-3 control-label" htmlFor="taskNotes">Notes</label>
                 <div className="col-sm-9">
                   <textarea className="form-control" rows="4" cols="50"
-                    id="taskNotes"  ref={(ref) => this.inputTaskNotes = ref } placeholder="{this.inputTaskNotes}"></textarea>
+                    id="taskNotes"  ref={(ref) => this.inputTaskNotes = ref } placeholder={this.inputTaskNotes}></textarea>
                 </div>
               </div>
               <div className="form-group">

@@ -26,7 +26,7 @@ var HeaderNav = React.createClass({
                   <button type="button" className="btn btn-info dropdown-toggle"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by: <span className="caret"></span></button>
                     <ul className="dropdown-menu dropdown-menu-right">
-                      <li><a href="#" id="taskName" onClick={this.handleSort}>Task {(this.props.orderBy === 'taskName') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>
+                      <li><a href="#" id="taskName" onClick={this.handleSort}>Task Name {(this.props.orderBy === 'taskName') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>
                       <li><a href="#" id="dueDate" onClick={this.handleSort}>Due Date {(this.props.orderBy === 'dueDate') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>
                       <li><a href="#" id="taskSubject" onClick={this.handleSort}>Subject  {(this.props.orderBy === 'taskSubject') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>
                       <li><a href="#" id="taskEffort" onClick={this.handleSort}>Effort  {(this.props.orderBy === 'taskEffort') ? <span className="glyphicon glyphicon-ok"></span>:null}</a></li>

@@ -56,7 +56,7 @@ var MainInterface = React.createClass({
   }, //componentDidUpdate
 
   toggleTaskDisplay: function() {
-    console.log('toggleTaskDisplay called');
+    // console.log('toggleTaskDisplay called');
     var tempVisibility = !this.state.taskBodyVisible;
     this.setState({
       taskBodyVisible: tempVisibility
@@ -68,7 +68,7 @@ var MainInterface = React.createClass({
   },
 
   toggleEditTaskDisplay: function() {
-    console.log('hello from toggleEditTaskDisplay');
+    // console.log('hello from toggleEditTaskDisplay');
     var tempVisibility = !this.state.editTaskBodyVisible;
     this.setState({
       editTaskBodyVisible: tempVisibility
@@ -77,20 +77,13 @@ var MainInterface = React.createClass({
 
   changeEffort: function() {
     var mySlider = new Slider(slider);
-    // var mySlider = document.getElementById('taskEffort').slider();
-    // console.log(mySlider);
-    // var minSliderValue = mySlider.data("slider-min");
-    // var maxSliderValue = mySlider.data("slider-max");
 
-    // document.getElementById('taskEffort').slider();
-    // var tempVariable = document.getElementById('taskEffort');
-
-    // If You want to change input text using slider handler
+    // If You want to change input text using slider handler:
     mySlider.on('slide', function(slider){
       document.getElementById("taskEffort").val(slider.value);
     });
 
-    // If you want to change slider using input text
+    // If you want to change slider using input text:
     // document.getElementById("inputValue").on("keyup", function() {
     //     var val = Math.abs(parseInt(this.value, 10) || minSliderValue);
     //     this.value = val > maxSliderValue ? maxSliderValue : val;
@@ -149,14 +142,14 @@ var MainInterface = React.createClass({
     var myTasks = this.state.myTasks;
 
     if(this.state.taskBodyVisible === true) {
-      console.log('task body visible');
+      // console.log('task body visible');
       $('#addTask').modal('show');
     } else {
       $('#addTask').modal('hide');
     }
 
     if(this.state.editTaskBodyVisible === true) {
-      console.log('edit visible');
+      // console.log('edit visible');
       $('#editTask').modal('show');
     } else {
       $('#editTask').modal('hide');
@@ -205,14 +198,14 @@ var MainInterface = React.createClass({
           <AddTask
             handleToggle = {this.toggleTaskDisplay}
             addTask = {this.addTask}
-            editTask = {this.editTask}
+            {/*editTask = {this.editTask}*/}
             onEffortChange = {this.changeEffort}
           />
-          {/*<EditTask
+          <EditTask
             handleToggle = {this.toggleEditTaskDisplay}
             editTask = {this.editTask}
             onEffortChange = {this.changeEffort}
-          />*/}
+          />
           <div className="container">
            <div className="row">
              <div className="tasks col-sm-12">

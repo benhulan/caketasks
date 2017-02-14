@@ -46,7 +46,7 @@ var AddTask = React.createClass({
     this.inputTaskNotes.value = '';
     
   }, //handleAdd
-
+/*
    handleEdit: function(e) {
     e.preventDefault();
     var tempItem = {
@@ -67,6 +67,7 @@ var AddTask = React.createClass({
     this.inputTaskNotes.value = '';
     
   }, //handleEdit
+  */
 
   render: function() {
     return(
