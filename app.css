@@ -7,7 +7,7 @@ html {
   box-sizing: inherit;
 }
 
-#page-info {
+#page-info, #page-view {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background: transparent;
   color: white;
@@ -20,11 +20,11 @@ html {
   cursor: pointer;
 }
 
-#page-info a:link {
+#page-info a:link, #page-view a:link {
   color: #EEC856;
 }
 
-#page-info .info-content {
+#page-info .info-content, #page-view .view-content {
   /* background: linear-gradient( 180deg, rgba(234, 192, 59, .75), rgba(24, 101, 85, .95)); */
   background: linear-gradient( 180deg, rgba(192, 192, 192, 1), rgba(45, 45, 45, 1));
   width: 90%;
@@ -32,19 +32,19 @@ html {
   border-radius: 20px;
   text-align: center;
   align-self: center;
-  border: 2px solid rgba(24, 101, 85, .95);
+  border: 2px solid rgba(238, 122, 90, 1);
   box-shadow: 5px 5px 20px rgba(0, 0, 0, .4);
   overflow:hidden;
 }
 
-#page-info .page-headline {
+#page-info .page-headline, #page-view .page-headline {
   font-size: 1.8em;
   margin: 0;
   padding: 0;
   color: #EEC856;
 }
 
-#page-info img {
+#page-info img, #page-view img {
   width: 100px;
   opacity: .8;
 }

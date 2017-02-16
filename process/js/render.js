@@ -67,11 +67,12 @@ var MainInterface = React.createClass({
     ipc.sendSync('changeView');
   },
 
-  toggleEditTaskDisplay: function() {
-    // console.log('hello from toggleEditTaskDisplay');
+  toggleEditTaskDisplay: function(item) {
+    // console.log(item);
     var tempVisibility = !this.state.editTaskBodyVisible;
     this.setState({
-      editTaskBodyVisible: tempVisibility
+      editTaskBodyVisible: tempVisibility,
+      item: item
     });
   },
 
@@ -104,35 +105,46 @@ var MainInterface = React.createClass({
     }) //setState
   }, //addTask
 
-  editTask: function(tempItem) {
-    var tempTasks = this.state.myTasks;
-    tempTasks.push(tempItem);
+  editTask: function(item) {
+    var allTasks = this.state.myTasks;
+    var currentTask = item;
+    // currentTask.taskName = item.taskName;
+    allTasks.splice(allTasks.indexOf(item), 1, currentTask);
     this.setState({
-      myTasks: tempTasks,
+      myTasks: allTasks,
       editTaskBodyVisible: false
-    }) //setState
-  }, //editTask
+    })
+  },
 
   deleteMessage: function(item) {
     var allTasks = this.state.myTasks;
     var newTasks = _.without(allTasks, item);
     this.setState({
       myTasks: newTasks
-    }); //setState
-  }, //deleteMessage
+    });
+  },
+
+  toggleDone: function(item){
+    // console.log(item);
+    var allTasks = this.state.myTasks;
+    item.checkedState = !item.checkedState;
+    this.setState({
+      myTasks: allTasks
+    });
+  },
 
   reOrder: function(orderBy, orderDir) {
     this.setState({
       orderBy: orderBy,
       orderDir: orderDir
-    }) //setState
-  }, //reOrder
+    })
+  }, 
 
   searchTasks: function(query) {
     this.setState({
       queryText: query
-    }); //setState
-  }, //searchTasks
+    });
+  },
 
   render: function() {
     var filteredTasks = [];
@@ -177,6 +189,7 @@ var MainInterface = React.createClass({
           whichItem =  {item}
           onDelete = {this.deleteMessage}
           onEdit = {this.toggleEditTaskDisplay}
+          onCheck = {this.toggleDone}
         />
       ) // return
     }.bind(this)); //Tasks.map
@@ -198,12 +211,12 @@ var MainInterface = React.createClass({
           <AddTask
             handleToggle = {this.toggleTaskDisplay}
             addTask = {this.addTask}
-            {/*editTask = {this.editTask}*/}
             onEffortChange = {this.changeEffort}
           />
           <EditTask
             handleToggle = {this.toggleEditTaskDisplay}
             editTask = {this.editTask}
+            getValues = {this.getValues}
             onEffortChange = {this.changeEffort}
           />
           <div className="container">

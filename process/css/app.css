@@ -8,7 +8,7 @@
   box-sizing: inherit;
 }
 body {
-  background-color: rgba(255,255,255,0) !important;
+  background-color: rgba(0,0,0,0) !important;
 }
 
 html {
@@ -26,16 +26,6 @@ h1, h2, h3, h4, h5, h6 {
   background-repeat: no-repeat;
   background-size: 40px;
   background-position: 10px;
-}
-
-@media only screen
-  and (max-width: 768px) {
-/*  .navbar-header {
-    display: none;
-  }
-  .navbar {
-    background-image: none;
-  }*/
 }
 
 .navbar-default .navbar-brand {
@@ -83,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .interface {
   display: flex;
-  background: #D8F2F0;
+  background: #A7DCDC; /* #D8F2F0; */
 }
 
 .toolbar {
@@ -93,14 +83,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.1em;
   height: 100vh;
   padding-top: 10px;
-}
-
-@media only screen
-  and (max-width: 768px) {
-  .toolbar {
-    min-width: 55px;
-  }
-
 }
 
 .toolbar-item {
@@ -119,11 +101,21 @@ h1, h2, h3, h4, h5, h6 {
   margin-right:10px;
 }
 
+
 @media only screen and (max-width: 768px) {
+  /* .navbar-header {
+    display: none;
+  }
+  .navbar {
+    background-image: none;
+  }*/
+
+  .toolbar {
+    min-width: 55px;
+  }
   .toolbar-item-text {
     display: none;
   }
-
   .toolbar-item-button {
     font-size: 20px;
   }
@@ -148,6 +140,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .item-list {
   margin: 0;
+  margin-left: 1em;
   padding: 0;
   list-style-type: none;
   font-size: 1.5rem;
@@ -195,7 +188,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .item-list .label-item {
   font-weight: bold;
-  color: #D03B3B;
+  color: rgba(238, 122, 90, 1); /* #D03B3B; */
   padding-right: 10px;
 }
 
@@ -305,3 +298,4 @@ h2.tasks-headline {
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   padding-left: 0px;
 }
+
