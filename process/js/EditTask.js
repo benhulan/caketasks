@@ -26,9 +26,6 @@ var EditTask = React.createClass({
   getEffort: function() {
     this.props.onEffortChange(this.props.singleItem.taskEffort);
   },
-  getValues: function(item){
-    this.props.getValues(this.props.singleItem);
-  },
 
   handleEdit: function(item) {
     var currentTask = {
@@ -59,7 +56,7 @@ var EditTask = React.createClass({
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" onClick={this.toggleEditTaskDisplay} aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 className="modal-title">Edit Task:  {this.inputTaskName}</h4>
+              <h4 className="modal-title">Edit Task:  {this.taskName}</h4>
             </div>
             <form className="modal-body edit-task form-horizontal" onSubmit={this.handleEdit}>
               <div className="form-group">
@@ -79,22 +76,19 @@ var EditTask = React.createClass({
               <div className="form-group">
                 <label className="col-sm-3 control-label" htmlFor="dueDate">Date Due</label>
                 <div className="col-sm-9">
-                  <input type="date" className="form-control"
-                    id="dueDate"  ref={(ref) => this.inputDueDate = ref }
-                    defaultValue={this.inputDueDate} />
+                  <input type="date" className="form-control" id="dueDate"  ref={(ref) => this.inputDueDate = ref } defaultValue={this.inputDueDate} />
                 </div>
               </div>
               <div className="form-group">
                 <label className="col-sm-3 control-label" htmlFor="dueTime">Time Due</label>
                 <div className="col-sm-9">
-                  <input type="time" className="form-control"
-                    id="dueTime"  ref={(ref) => this.inputDueTime = ref } defaultValue={this.inputDueTime} />
+                  <input type="time" className="form-control" id="dueTime"  ref={(ref) => this.inputDueTime = ref } defaultValue={this.inputDueTime} />
                 </div>
               </div>
               <div className="form-group">
                 <label className="col-sm-3 control-label" htmlFor="taskEffort">Effort</label>
                 <div className="col-sm-9">
-                    <input id="taskEffort" onChange={this.getEffort} ref={(ref) => this.inputTaskEffort = ref} defaultValue={this.taskEffort} type="text" name="taskEffort" data-provide="slider" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="0" />
+                    <input id="taskEffort" onChange={this.getEffort} ref={(ref) => this.inputTaskEffort = ref} defaultValue={this.inputTaskEffort} type="text" name="taskEffort" data-provide="slider" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="0" />
                     <span className="toolbar-item-button glyphicon glyphicon-question-sign"></span>
                 </div>
               </div>
@@ -102,14 +96,12 @@ var EditTask = React.createClass({
                 <label className="col-sm-3 control-label" htmlFor="taskNotes">Notes</label>
                 <div className="col-sm-9">
                   <textarea className="form-control" rows="4" cols="50"
-                    id="taskNotes"  ref={(ref) => this.inputTaskNotes = ref } placeholder={this.taskNotes}></textarea>
+                    id="taskNotes"  ref={(ref) => this.inputTaskNotes = ref } placeholder={this.inputTaskNotes}></textarea>
                 </div>
               </div>
               <div className="form-group">
                 <label className="col-sm-3 control-label" htmlFor="checkedState">Done?</label>
-                <span class="input-group-addon">
-                  <input type="checkbox" ref={(ref) => this.inputCheckedState = ref} placeholder={this.checkedState} />
-                </span>
+                <input type="checkbox" ref={(ref) => this.inputCheckedState = ref} />
               </div>
               <div className="form-group">
                 <div className="col-sm-offset-3 col-sm-9">

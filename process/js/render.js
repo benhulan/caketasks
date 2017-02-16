@@ -216,7 +216,6 @@ var MainInterface = React.createClass({
           <EditTask
             handleToggle = {this.toggleEditTaskDisplay}
             editTask = {this.editTask}
-            getValues = {this.getValues}
             onEffortChange = {this.changeEffort}
           />
           <div className="container">
