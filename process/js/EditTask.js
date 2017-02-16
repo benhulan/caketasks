@@ -50,13 +50,14 @@ var EditTask = React.createClass({
   }, //handleEdit
 
   render: function() {
+    console.log(this);
     return(
       <div className="modal fade" id="editTask" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" onClick={this.toggleEditTaskDisplay} aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 className="modal-title">Edit Task:  {this.taskName}</h4>
+              <h4 className="modal-title">Edit Task:  {this.inputTaskName}</h4>
             </div>
             <form className="modal-body edit-task form-horizontal" onSubmit={this.handleEdit}>
               <div className="form-group">

@@ -32,7 +32,7 @@ var MainInterface = React.createClass({
 
   componentDidMount: function() {
     ipc.on('addTask', function(event, message) {
-      this.toggleTaskDisplay();
+      this.toggleNewTaskDisplay();
     }.bind(this));
     ipc.on('editTask', function(event, message) {
       this.toggleEditTaskDisplay();
@@ -41,7 +41,7 @@ var MainInterface = React.createClass({
 
   componentWillUnmount: function() {
     ipc.removeListener('addTask', function(event, message) {
-      this.toggleTaskDisplay();
+      this.toggleNewTaskDisplay();
     }.bind(this));
     ipc.removeListener('editTask', function(event, message) {
       this.toggleEditTaskDisplay();
@@ -55,13 +55,13 @@ var MainInterface = React.createClass({
     });//writeFile
   }, //componentDidUpdate
 
-  toggleTaskDisplay: function() {
-    // console.log('toggleTaskDisplay called');
+  toggleNewTaskDisplay: function() {
+    // console.log('toggleNewTaskDisplay called');
     var tempVisibility = !this.state.taskBodyVisible;
     this.setState({
       taskBodyVisible: tempVisibility
     }); //setState
-  }, //toggleTaskDisplay
+  }, //toggleNewTaskDisplay
 
   toggleViewDisplay: function() {
     ipc.sendSync('changeView');
@@ -106,6 +106,7 @@ var MainInterface = React.createClass({
   }, //addTask
 
   editTask: function(item) {
+    console.log(item);
     var allTasks = this.state.myTasks;
     var currentTask = item;
     // currentTask.taskName = item.taskName;
@@ -204,12 +205,12 @@ var MainInterface = React.createClass({
         />
         <div className="interface">
           <Toolbar
-            handleToggle = {this.toggleTaskDisplay}
+            handleToggle = {this.toggleNewTaskDisplay}
             handleAbout = {this.showAbout}
             handleView = {this.toggleViewDisplay}
           />
           <AddTask
-            handleToggle = {this.toggleTaskDisplay}
+            handleToggle = {this.toggleNewTaskDisplay}
             addTask = {this.addTask}
             onEffortChange = {this.changeEffort}
           />
