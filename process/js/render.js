@@ -106,11 +106,11 @@ var MainInterface = React.createClass({
   }, //addTask
 
   editTask: function(item) {
-    console.log(item);
+    // console.log(item);
     var allTasks = this.state.myTasks;
-    var currentTask = item;
-    // currentTask.taskName = item.taskName;
-    allTasks.splice(allTasks.indexOf(item), 1, currentTask);
+    var tempTask = item;
+    // tempTask.taskName = item.taskName;
+    allTasks.splice(allTasks.indexOf(item), 1, tempTask);
     this.setState({
       myTasks: allTasks,
       editTaskBodyVisible: false
