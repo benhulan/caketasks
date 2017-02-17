@@ -33,7 +33,7 @@ app.on('ready', function() {
   viewInfoWindow = new BrowserWindow({
     width: 400,
     height: 300,
-    transparent: false,
+    transparent: true,
     show: false,
     modal: true,
     frame: false
