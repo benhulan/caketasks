@@ -46,7 +46,7 @@ var MainInterface = React.createClass({
     ipc.removeListener('editTask', function(event, message) {
       this.toggleEditTaskDisplay();
     }.bind(this));
-  },  
+  },
   componentDidUpdate: function() {
     fs.writeFile(dataLocation, JSON.stringify(this.state.myTasks), 'utf8', function(err) {
       if (err) {
@@ -56,7 +56,7 @@ var MainInterface = React.createClass({
   }, //componentDidUpdate
 
   toggleNewTaskDisplay: function() {
-    // console.log('toggleNewTaskDisplay called');
+    console.log('toggleNewTaskDisplay called');
     var tempVisibility = !this.state.taskBodyVisible;
     this.setState({
       taskBodyVisible: tempVisibility
@@ -68,7 +68,7 @@ var MainInterface = React.createClass({
   },
 
   toggleEditTaskDisplay: function(item) {
-    // console.log(item);
+    console.log('toggle edit task', item);
     var tempVisibility = !this.state.editTaskBodyVisible;
     this.setState({
       editTaskBodyVisible: tempVisibility,
@@ -106,7 +106,7 @@ var MainInterface = React.createClass({
   }, //addTask
 
   editTask: function(item) {
-    // console.log(item);
+    console.log('edit', item);
     var allTasks = this.state.myTasks;
     var tempTask = item;
     // tempTask.taskName = item.taskName;
@@ -126,7 +126,7 @@ var MainInterface = React.createClass({
   },
 
   toggleDone: function(item){
-    // console.log(item);
+    console.log('toggle done', item);
     var allTasks = this.state.myTasks;
     item.checkedState = !item.checkedState;
     this.setState({
@@ -139,7 +139,7 @@ var MainInterface = React.createClass({
       orderBy: orderBy,
       orderDir: orderDir
     })
-  }, 
+  },
 
   searchTasks: function(query) {
     this.setState({
@@ -155,14 +155,14 @@ var MainInterface = React.createClass({
     var myTasks = this.state.myTasks;
 
     if(this.state.taskBodyVisible === true) {
-      // console.log('task body visible');
+      console.log('task body visible');
       $('#addTask').modal('show');
     } else {
       $('#addTask').modal('hide');
     }
 
     if(this.state.editTaskBodyVisible === true) {
-      // console.log('edit visible');
+      console.log('edit visible');
       $('#editTask').modal('show');
     } else {
       $('#editTask').modal('hide');
@@ -222,7 +222,7 @@ var MainInterface = React.createClass({
           <div className="container">
            <div className="row">
              <div className="tasks col-sm-12">
-               {/*<h2 className="tasks-headline">My Tasks:</h2>*/}
+               {<h2 className="tasks-headline">My Tasks:</h2>}
                <ul className="item-list media-list">{filteredTasks}</ul>
              </div>{/* col-sm-12 */}
            </div>{/* row */}

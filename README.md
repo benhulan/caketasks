@@ -2,12 +2,10 @@
 
 This is the source code for CakeTasks, Alpha Version 0.a.1
 
-[CakeTasks](http://caketasks.com) is being built with [Electron](http://electron.atom.io/) and [ReactJS](https://facebook.github.io/react/)
+CakeTasks is being built with [Electron](http://electron.atom.io/) and [ReactJS](https://facebook.github.io/react/)
 
 ## Public Alpha
 This application is in development. This is the Alpha prototype which will be used in user testing, specifically to gather design ideas and usability data around the main feature, which will be a visualization of prioritized tasks.
-
-For more information, sign up on our [landing page](http://caketasks.com/), and follow our [blog](http://caketasks.com/caketasks/blog)
 
 ## Operation:
 The UI consists of the header, Toolbar on the left, and the main task list area.
@@ -32,25 +30,20 @@ Mouse over your tasks in the main task list and you will see a small action menu
 - download this repository `git clone https://github.com/benhulan/caketasks.git`
 - `cd` into the `caketasks` directory
 - `npm-install` dependencies (may require additional system configuration)
-- `gulp`
-- If you want to restore the original 4 tasks
+- `gulp serve`
+- After running, if you want to restore the original 4 tasks
   - copy the contents from `caketasks/data/data_backup.json`
   - paste over the contents of `caketasks/data/data.json`
   - restart the app
 
 ### To install CakeTasks as an Application on a Mac
-- [Download the app here!](https://www.dropbox.com/sh/vh0rgca3frs5ld0/AADXKAduuJCbxM5xr8eLv2Sla?dl=0)
-
-OR
-
 - download this repository
 - `cd` into the project directory
-- `electron-packager . 'CakeTasks' --out ~/Desktop --overwrite --icon ./icons/icon`
+- `npm package-mac`
 
 This will build the application package. The `CakeTasks-darwin-x64` project directory contains the application as well as license information. Feel free to drag the app image from `~/Desktop/CakeTasks-darwin-x64/CakeTasks` into your Applications folder and run it like all your other apps!
 
 ### Not on a Mac?
-- download this repository, navigate to the project directory and try something like
-- `electron-packager . 'CakeTasks' --all`
-
-You may need `wine` or other dependencies. CakeTasks has only been tested on a Mac at this point.
+- Download this repository, navigate to the project directory and [follow the directions for your platform](https://github.com/electron/electron-packager)
+- For Ubuntu 18.04+ you will need to run `sudo apt-get install libgconf-2-4` for development
+- `npm package-linux` to build the executable package

@@ -85,7 +85,7 @@ app.on('ready', function() {
         {
           role: 'help',
           label: 'Website',
-          click() { electron.shell.openExternal('http://caketasks.com')}
+          click() { electron.shell.openExternal('https://github.com/benhulan/caketasks')}
         },
         {role: 'quit'},
         {role: 'close'}
