@@ -23,6 +23,7 @@
     "bootstrap-slider": "^9.7.0",
     "electron-packager": "^8.4.0",
     "electron-reload": "^1.0.2",
+    "gulp-webserver": "^0.9.1",
     "jquery": "^3.1.0",
     "lodash": "^4.13.1",
     "react-bootstrap-slider": "^2.2.2"

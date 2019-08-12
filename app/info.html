@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>CakeTasks Info</title>
-  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" type="text/css" href="css/app.css">
   <script type="text/javascript">
     var electron = require('electron');
     var shell = electron.shell;
@@ -15,10 +15,10 @@
 <body id="page-info">
   <main class="info-content">
     <h3 class="page-headline">CakeTasks</h3>
-            <p>Prioritization is Cake!<br>
-        <strong>v1.0</strong><br>
-        <small>Made with <span class='glyphicon glyphicon-heart'>︎</span> by <a href="#" onclick="shell.openExternal('http://benhulan.com')">Ben Hulan</a></small>
-        </p>
+    <p>Prioritization is Cake!<br>
+      <strong>v1.0</strong><br>
+      <small>Made with <span class='glyphicon glyphicon-heart'>︎</span> by <a href="#" onclick="shell.openExternal('http://benhulan.com')">Ben Hulan</a></small>
+    </p>
     <p><a href="#" onclick="ipc.sendSync('closeInfoWindow')">close</a></p>
   </main>
 </body>

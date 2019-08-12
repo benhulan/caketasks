@@ -11,7 +11,7 @@ var ipc = electron.ipcRenderer;
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Slider = require('react-bootstrap-slider');
+// var Slider = require('react-bootstrap-slider');
 var TaskList = require('./TaskList');
 var Toolbar = require('./Toolbar');
 var HeaderNav = require('./HeaderNav');
@@ -77,19 +77,19 @@ var MainInterface = React.createClass({
   },
 
   changeEffort: function() {
-    var mySlider = new Slider(slider);
+    // var mySlider = new Slider(slider);
 
     // If You want to change input text using slider handler:
-    mySlider.on('slide', function(slider){
-      document.getElementById("taskEffort").val(slider.value);
-    });
+    // mySlider.on('slide', function(slider){
+    //   document.getElementById("taskEffort").val(slider.value);
+    // });
 
     // If you want to change slider using input text:
-    // document.getElementById("inputValue").on("keyup", function() {
-    //     var val = Math.abs(parseInt(this.value, 10) || minSliderValue);
-    //     this.value = val > maxSliderValue ? maxSliderValue : val;
-    //     mySlider.setValue(val);
-    // });
+    document.getElementById("inputValue").on("keyup", function() {
+        var val = Math.abs(parseInt(this.value, 10) || minSliderValue);
+        this.value = val > maxSliderValue ? maxSliderValue : val;
+        mySlider.setValue(val);
+    });
   },
 
   showAbout:function() {
