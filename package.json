@@ -25,7 +25,7 @@
     "electron-reload": "^1.0.2",
     "gulp-webserver": "^0.9.1",
     "jquery": "^3.1.0",
-    "lodash": "^4.13.1",
+    "lodash": "^4.17.21",
     "react-bootstrap-slider": "^2.2.2"
   }
 }
